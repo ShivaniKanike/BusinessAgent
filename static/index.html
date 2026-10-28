@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini BI Assistant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; margin-bottom: 5px; }
+        .subtitle { color: #777; margin-bottom: 25px; font-size: 14px; }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+        input[type="text"]:focus { border-color: #4a90d9; }
+        button {
+            padding: 12px 24px;
+            background: #4a90d9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        button:hover { background: #357abd; }
+        .suggestions {
+            margin-bottom: 20px;
+        }
+        .suggestions p { font-size: 13px; color: #999; margin-bottom: 8px; }
+        .suggestions span {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #4a90d9;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin: 3px;
+            cursor: pointer;
+        }
+        .suggestions span:hover { background: #d0e2fc; }
+        .result-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            display: none;
+        }
+        .result-box h3 { color: #333; margin-bottom: 10px; }
+        .answer { font-size: 18px; color: #2d7d2d; font-weight: bold; margin-bottom: 15px; }
+        .error { color: #d32f2f; }
+        .sql-box {
+            background: #263238;
+            color: #80cbc4;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 13px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+        th { background: #e8f0fe; color: #333; }
+        .loading { color: #999; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Mini BI Assistant</h1>
+        <p class="subtitle">Ask questions about sales data in plain English</p>
+
+        <div class="input-group">
+            <input type="text" id="questionInput" placeholder="e.g. What is the total revenue?" />
+            <button onclick="askQuestion()">Ask</button>
+        </div>
+
+        <div class="suggestions">
+            <p>Try these questions:</p>
+            <span onclick="fillQuestion('What is the total revenue?')">Total Revenue</span>
+            <span onclick="fillQuestion('Which product generated the highest revenue?')">Top Product</span>
+            <span onclick="fillQuestion('What is the monthly revenue trend?')">Monthly Trend</span>
+            <span onclick="fillQuestion('Which region generated the highest sales?')">Top Region</span>
+            <span onclick="fillQuestion('How are the tables columns?')">Table Columns (LangChain)</span>
+        </div>
+
+        <div class="result-box" id="resultBox">
+            <h3>Result</h3>
+            <div id="resultContent"></div>
+        </div>
+    </div>
+
+    <script>
+        function fillQuestion(q) {
+            document.getElementById('questionInput').value = q;
+            askQuestion();
+        }
+
+        async function askQuestion() {
+            const question = document.getElementById('questionInput').value.trim();
+            if (!question) return;
+
+            const resultBox = document.getElementById('resultBox');
+            const resultContent = document.getElementById('resultContent');
+            resultBox.style.display = 'block';
+            resultContent.innerHTML = '<p class="loading">Thinking...</p>';
+
+            try {
+                const response = await fetch('/api/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: question })
+                });
+                const data = await response.json();
+
+                if (data.error) {
+                    resultContent.innerHTML = `<p class="error">❌ ${data.error}</p>`;
+                    return;
+                }
+
+                let html = `<p class="answer">✅ ${data.answer}</p>`;
+
+                // Show data table if there are multiple results
+                if (data.data && data.data.length > 1) {
+                    const keys = Object.keys(data.data[0]);
+                    html += '<table><tr>';
+                    keys.forEach(k => html += `<th>${k}</th>`);
+                    html += '</tr>';
+                    data.data.forEach(row => {
+                        html += '<tr>';
+                        keys.forEach(k => html += `<td>${row[k]}</td>`);
+                        html += '</tr>';
+                    });
+                    html += '</table>';
+                }
+
+                // Show the SQL query used
+                if (data.sql_query) {
+                    html += `<div class="sql-box">${data.sql_query}</div>`;
+                }
+
+                resultContent.innerHTML = html;
+
+            } catch (err) {
+                resultContent.innerHTML = `<p class="error">❌ Network error: ${err.message}</p>`;
+            }
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('questionInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') askQuestion();
+        });
+    </script>
+</body>
+</html>
+

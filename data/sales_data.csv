@@ -1,0 +1,53 @@
+Transaction_Id,Order_date,Product,Category,Region,Sales_channel,Quantity,Unit_price,Discount_amount,Status
+TXN0001,03-01-2026,Laptop Stand,Accessories,North,Online,10,1200,0,Completed
+TXN0002,05-01-2026,Wireless Mouse,Accessories,South,Retail,25,650,0,Completed
+TXN0003,08-01-2026,Office Chair,Furniture,West,Online,4,7800,0,Completed
+TXN0004,12-01-2026,Monitor,Electronics,East,Retail,6,9500,500,Completed
+TXN0005,15-01-2026,Keyboard,Accessories,North,Online,18,900,0,Completed
+TXN0006,18-01-2026,Desk,Furniture,South,Retail,3,12500,0,Completed
+TXN0007,21-01-2026,USB-C Hub,Accessories,West,Online,12,1800,0,Completed
+TXN0008,25-01-2026,Monitor,Electronics,North,Online,2,9500,0,Completed
+TXN0009,02-02-2026,Laptop Stand,Accessories,East,Retail,14,1200,0,Completed
+TXN0010,04-02-2026,Wireless Mouse,Accessories,West,Online,30,650,0,Completed
+TXN0011,07-02-2026,Office Chair,Furniture,South,Online,5,7800,0,Completed
+TXN0012,10-02-2026,Monitor,Electronics,North,Retail,8,9500,0,Completed
+TXN0013,13-02-2026,Keyboard,Accessories,East,Online,20,900,0,Completed
+TXN0014,16-02-2026,Desk,Furniture,West,Retail,2,12500,0,Completed
+TXN0015,20-02-2026,USB-C Hub,Accessories,South,Online,15,1800,0,Completed
+TXN0016,23-02-2026,Laptop Stand,Accessories,North,Retail,8,1200,200,Completed
+TXN0017,01-03-2026,Wireless Mouse,Accessories,East,Online,22,650,0,Completed
+TXN0018,04-03-2026,Office Chair,Furniture,South,Retail,3,7800,0,Completed
+TXN0019,07-03-2026,Monitor,Electronics,West,Online,5,9500,0,Completed
+TXN0020,10-03-2026,Keyboard,Accessories,North,Retail,15,900,0,Completed
+TXN0021,14-03-2026,Desk,Furniture,East,Online,4,12500,0,Completed
+TXN0022,17-03-2026,USB-C Hub,Accessories,South,Retail,10,1800,0,Completed
+TXN0023,20-03-2026,Monitor,Electronics,North,Online,3,9500,0,Completed
+TXN0024,25-03-2026,Wireless Mouse,Accessories,West,Retail,28,650,0,Cancelled
+TXN0025,01-04-2026,Laptop Stand,Accessories,East,Online,11,1200,0,Completed
+TXN0026,04-04-2026,Office Chair,Furniture,North,Retail,6,7800,0,Completed
+TXN0027,07-04-2026,Keyboard,Accessories,South,Online,17,900,0,Completed
+TXN0028,10-04-2026,Desk,Furniture,West,Retail,3,12500,0,Completed
+TXN0029,13-04-2026,USB-C Hub,Accessories,East,Online,14,1800,0,Completed
+TXN0030,16-04-2026,Monitor,Electronics,South,Retail,7,9500,0,Completed
+TXN0031,19-04-2026,Laptop Stand,Accessories,North,Online,9,1200,0,Completed
+TXN0032,22-04-2026,Wireless Mouse,Accessories,West,Online,27,650,0,Completed
+TXN0033,26-04-2026,Monitor,Electronics,West,Retail,2,9500,0,Returned
+TXN0034,28-04-2026,Keyboard,Accessories,East,Online,0,900,0,Completed
+TXN0035,02-05-2026,Laptop Stand,Accessories,North,Online,15,1200,0,Completed
+TXN0036,05-05-2026,Wireless Mouse,Accessories,South,Retail,32,650,0,Completed
+TXN0037,08-05-2026,Office Chair,Furniture,West,Online,6,7800,0,Completed
+TXN0038,11-05-2026,Monitor,Electronics,East,Retail,9,9500,0,Completed
+TXN0039,14-05-2026,Keyboard,Accessories,North,Online,26,900,0,Completed
+TXN0040,17-05-2026,Desk,Furniture,South,Retail,4,12500,0,Completed
+TXN0041,20-05-2026,USB-C Hub,Accessories,West,Online,20,1800,0,Completed
+TXN0042,24-05-2026,Monitor,Electronics,North,Online,4,9500,0,Completed
+TXN0043,03-06-2026,Laptop Stand,Accessories,East,Online,13,1200,0,Completed
+TXN0044,06-06-2026,Wireless Mouse,Accessories,West,Retail,29,650,0,Completed
+TXN0045,09-06-2026,Office Chair,Furniture,South,Online,5,7800,0,Completed
+TXN0046,12-06-2026,Monitor,Electronics,North,Retail,6,9500,0,Completed
+TXN0047,15-06-2026,Keyboard,Accessories,West,Online,19,900,0,Completed
+TXN0048,18-06-2026,Desk,Furniture,East,Retail,2,12500,0,Completed
+TXN0049,21-06-2026,USB-C Hub,Accessories,South,Online,16,1800,0,Completed
+TXN0050,25-06-2026,Keyboard,Accessories,North,Retail,11,900,0,Completed
+TXN0051,28-06-2026,Laptop Stand,Accessories,East,Online,5,,0,Completed
+
